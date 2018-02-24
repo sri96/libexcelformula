@@ -6,3 +6,6 @@ message("Building ut with high levels of optimization, address and leak sanitiza
 set(CMAKE_CXX_FLAGS "-std=c++1z -o3 -fsanitize=address -Wall -Wextra")
 
 add_executable(ut ../unit_test/unit_test_driver.cpp)
+
+set(CMAKE_EXE_LINKER_FLAGS "-lbenchmark")
+add_executable(benchmark ../perf_test/perf_test_driver.cpp)
