@@ -1,3 +1,5 @@
+CMake/*
+!CMake/CMakeLists.txt
 test/CMake/*
 !test/CMake/CMakeLists.txt
 thirdparty/google_benchmark/build/* # Need to be regenerated on each platform

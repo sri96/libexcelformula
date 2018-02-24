@@ -20,10 +20,10 @@ namespace ExcelFormula
     class IExcelFormulaEvaluator
     {
         public:
-            EvaluatedFormulaOutput EvaluateFormula(std::wstring_view inputFormulaString);
+            virtual EvaluatedFormulaOutput EvaluateFormula(const std::wstring_view inputFormulaString) const noexcept = 0;
     };
 
-    std::unique_ptr<IExcelFormulaEvaluator> CreateExcelFormulaEvaluatorInstance(std::wstring_view inputFormulaString);
+    std::unique_ptr<IExcelFormulaEvaluator> CreateExcelFormulaEvaluatorInstance();
 }
 
 #endif

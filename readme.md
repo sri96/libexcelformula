@@ -16,9 +16,13 @@ The main goals for this library are (in priority order)
 
 ## Installation
 
-This library is in its very early stages. It supports the full grammar of Excel formulas. The only major thing it lacks is implementation of evaluators for all the built in Excel formulas or support for User Defined formulas. 
+This library is in its very early stages. It will support the full grammar of Excel formulas. The only major thing it will lack is implementation of evaluators for all the built in Excel formulas or support for User Defined formulas.
 
-TO-DO: Add lib export instructions
+You can build this library using CMake
+
+* Go to CMake/ directory in the root of the folder
+* Generate the Makefile or Visual Studio soluion file
+* Build and install the static library
 
 ## How do I hack on this library?
 
