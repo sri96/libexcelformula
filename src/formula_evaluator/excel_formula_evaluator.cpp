@@ -3,12 +3,13 @@
 #include "excel_formula_evaluator.h"
 #include "../formula_lexer/i_excel_formula_lexer.h"
 #include "../formula_parser/i_excel_formula_parser.h"
+#include "../formula_callback_manager/i_excel_formula_callback_manager.h"
 
 using namespace ExcelFormula;
 using namespace ExcelFormula::Lexer;
 using namespace ExcelFormula::Parser;
 
-EvaluatedFormulaOutput ExcelFormulaEvaluator::EvaluateFormula(std::wstring_view inputFormulaString, const std::function<void(const std::wstring_view, std::wstring&)>& /*inputCallbackFunction*/) const noexcept
+EvaluatedFormulaOutput ExcelFormulaEvaluator::EvaluateFormula(std::wstring_view inputFormulaString, const std::function<void(const std::wstring_view, std::wstring&, LibExcelFormulaError&)>& inputCallbackFunction) const noexcept
 {
     EvaluatedFormulaOutput output;
     // Formula evaluation is four step process
@@ -24,7 +25,7 @@ EvaluatedFormulaOutput ExcelFormulaEvaluator::EvaluateFormula(std::wstring_view 
 
     // 2. Once you have the tokens, you need to parse them into a parse tree. Let's go do that now.
     const std::unique_ptr<IExcelFormulaParser> excelFormulaParserInstance = CreateExcelFormulaParserInstance();
-    const auto [parserError, parsedFormulaTree] = excelFormulaParserInstance->BuildParseTreeFromTokens(lexedTokens);
+    auto [parserError, parsedFormulaTree] = excelFormulaParserInstance->BuildParseTreeFromTokens(lexedTokens);
     if (parserError != ParserError::None)
     {
         output.outputFormulaError = LibExcelFormulaError::ParserError;
@@ -34,6 +35,8 @@ EvaluatedFormulaOutput ExcelFormulaEvaluator::EvaluateFormula(std::wstring_view 
     // 3. Analyze the parse tree and make callbacks to the caller to retrieve data for references and other things
     //    that we don't have data for. Since we have the parse tree, let's analyze and perform callbacks to retrieve the data that we  
     //    don't have yet.
+    const std::unique_ptr<IExcelFormulaCallbackManager> excelFormulaCallbackManagerInstance = CreateExcelFormulaCallbackManagerInstance();
+    excelFormulaCallbackManagerInstance->ResolveReferences(parsedFormulaTree, inputCallbackFunction);
 
     // 4. Evaluate the formula
 

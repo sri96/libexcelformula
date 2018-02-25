@@ -21,7 +21,7 @@ namespace ExcelFormula
     class IExcelFormulaEvaluator
     {
         public:
-            virtual EvaluatedFormulaOutput EvaluateFormula(const std::wstring_view inputFormulaString, const std::function<void(const std::wstring_view, std::wstring&)>& inputCallbackFunction) const noexcept = 0;
+            virtual EvaluatedFormulaOutput EvaluateFormula(const std::wstring_view inputFormulaString, const std::function<void(const std::wstring_view, std::wstring&, LibExcelFormulaError&)>& inputCallbackFunction) const noexcept = 0;
     };
 
     std::unique_ptr<IExcelFormulaEvaluator> CreateExcelFormulaEvaluatorInstance();
