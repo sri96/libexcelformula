@@ -50,9 +50,12 @@ EvaluatedFormulaOutput ExcelFormulaEvaluator::EvaluateFormula(std::wstring_view 
     const auto [runtimeError, outputEvaluatedResult] = excelFormulaParseTreeExecutorInstance->ExecuteParseTree(parsedFormulaTree);
     if (runtimeError != RuntimeError::None)
     {
-
+        output.outputFormulaError = LibExcelFormulaError::RuntimeError;
+        return output;
     }
 
+    output.outputFormulaError = LibExcelFormulaError::None;
+    output.outputEvaluatedResult = outputEvaluatedResult;
     return output;
 }
 
