@@ -13,7 +13,7 @@ namespace ExcelFormula
         LexerError, // Indicates a lexing error. Read the string output for a detailed message
         ParserError, // Indicates a parsing error. Read the string output for a detailed message
         DataReferenceError, // Indicates that the referenced data is not available
-        Error, // Adding a generic error. This will be removed in the future as we add more specific errors such as parsing error or lexing error
+        RuntimeError, // Indicates a runtime error has happend during function execution
         None
     };
 
@@ -21,7 +21,7 @@ namespace ExcelFormula
         { LibExcelFormulaError::LexerError, L"LexerError"},
         { LibExcelFormulaError::ParserError, L"ParseError"},
         { LibExcelFormulaError::DataReferenceError, L"DataReferenceError"},
-        { LibExcelFormulaError::Error, L"Error"},
+        { LibExcelFormulaError::RuntimeError, L"RuntimeError"},
         { LibExcelFormulaError::None, L"None"},
     }; 
 }

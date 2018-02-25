@@ -4,10 +4,12 @@
 #include "../formula_lexer/i_excel_formula_lexer.h"
 #include "../formula_parser/i_excel_formula_parser.h"
 #include "../formula_callback_manager/i_excel_formula_callback_manager.h"
+#include "../parse_tree_executor/i_excel_formula_parse_tree_executor.h"
 
 using namespace ExcelFormula;
 using namespace ExcelFormula::Lexer;
 using namespace ExcelFormula::Parser;
+using namespace ExcelFormula::Runtime;
 
 EvaluatedFormulaOutput ExcelFormulaEvaluator::EvaluateFormula(std::wstring_view inputFormulaString, const std::function<void(const std::wstring_view, std::wstring&, LibExcelFormulaError&)>& inputCallbackFunction) const noexcept
 {
@@ -36,12 +38,21 @@ EvaluatedFormulaOutput ExcelFormulaEvaluator::EvaluateFormula(std::wstring_view 
     //    that we don't have data for. Since we have the parse tree, let's analyze and perform callbacks to retrieve the data that we  
     //    don't have yet.
     const std::unique_ptr<IExcelFormulaCallbackManager> excelFormulaCallbackManagerInstance = CreateExcelFormulaCallbackManagerInstance();
-    excelFormulaCallbackManagerInstance->ResolveReferences(parsedFormulaTree, inputCallbackFunction);
+    const LibExcelFormulaError outputDataReferenceError = excelFormulaCallbackManagerInstance->ResolveReferences(parsedFormulaTree, inputCallbackFunction);
+    if (outputDataReferenceError != LibExcelFormulaError::None)
+    {
+        output.outputFormulaError = outputDataReferenceError;
+        return output;
+    }
 
     // 4. Evaluate the formula
+    const std::unique_ptr<IExcelFormulaParseTreeExecutor> excelFormulaParseTreeExecutorInstance = CreateExcelFormulaParseTreeExecutorInstance();
+    const auto [runtimeError, outputEvaluatedResult] = excelFormulaParseTreeExecutorInstance->ExecuteParseTree(parsedFormulaTree);
+    if (runtimeError != RuntimeError::None)
+    {
 
-    
-    output.outputFormulaError = LibExcelFormulaError::Error;
+    }
+
     return output;
 }
 

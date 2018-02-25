@@ -7,5 +7,6 @@
 #include "formula_evaluator_tests/ut_exports.hpp"
 #include "formula_lexer_tests/ut_exports.hpp"
 #include "formula_parser_tests/ut_exports.hpp"
+#include "parse_tree_executor_tests/ut_exports.hpp"
 
 #endif
