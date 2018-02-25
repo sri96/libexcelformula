@@ -1,10 +1,31 @@
 #include "excel_formula_evaluator.h"
+#include "../formula_lexer/i_excel_formula_lexer.h"
 
 using namespace ExcelFormula;
+using namespace ExcelFormula::Lexer;
 
-EvaluatedFormulaOutput ExcelFormulaEvaluator::EvaluateFormula(std::wstring_view /*inputFormulaString*/) const noexcept
+EvaluatedFormulaOutput ExcelFormulaEvaluator::EvaluateFormula(std::wstring_view inputFormulaString) const noexcept
 {
     EvaluatedFormulaOutput output;
+    // Formula evaluation is four step process
+
+    // 1. You need to lex the input string into tokens. Let's go do that
+    const std::unique_ptr<IExcelFormulaLexer> excelFormulaLexerInstance = CreateExcelFormulaLexerInstance();
+    const auto [lexerError, lexedTokens] = excelFormulaLexerInstance->LexFormulaIntoTokens(inputFormulaString);
+    if (lexerError != LexerError::None)
+    {
+        output.outputFormulaError = LibExcelFormulaError::LexerError;
+        return output;
+    }
+    // 2. Once you have the tokens, you need to parse them into a parse tree. Let's go do that now.
+
+    // 3. Analyze the parse tree and make callbacks to the caller to retrieve data for references and other things
+    //    that we don't have data for. Since we have the parse tree, let's analyze and perform callbacks to retrieve the data that we  
+    //    don't have yet.
+
+    // 4. Evaluate the formula
+
+    
     output.outputFormulaError = LibExcelFormulaError::Error;
     return output;
 }
