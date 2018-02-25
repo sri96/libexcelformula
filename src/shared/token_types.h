@@ -8,6 +8,8 @@ namespace ExcelFormula
     enum class TokenType
     {
         EqualOperationToken,
+        OpenCurlyParenToken,
+        CloseCurlyParenToken,
     };
 };
 
