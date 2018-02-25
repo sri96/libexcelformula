@@ -16,7 +16,7 @@ namespace ExcelFormula
             IExcelFormulaParseTree _outputParseTree;
 
             public:
-                std::pair<ParserError, IExcelFormulaParseTree> BuildParseTreeFromTokens(const std::vector<ExcelFormula::IExcelFormulaToken>& inputLexedTokens) const noexcept;
+                std::pair<ParserError, IExcelFormulaParseTree> BuildParseTreeFromTokens(const std::vector<std::unique_ptr<ExcelFormula::IExcelFormulaToken>>& inputLexedTokens) const noexcept;
                 void PopulateData();
         };
     };

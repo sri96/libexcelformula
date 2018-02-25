@@ -3,7 +3,7 @@
 using namespace ExcelFormula;
 using namespace ExcelFormula::Lexer;
 
-std::pair<LexerError, std::vector<IExcelFormulaToken>> MockExcelFormulaLexer::LexFormulaIntoTokens(const std::wstring_view inputFormulaString) const noexcept
+std::pair<LexerError, std::vector<std::unique_ptr<IExcelFormulaToken>>> MockExcelFormulaLexer::LexFormulaIntoTokens(const std::wstring_view inputFormulaString) const noexcept
 {
     return std::make_pair(_outputLexerError, _outputLexerTokens);
 }

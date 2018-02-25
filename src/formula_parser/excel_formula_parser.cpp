@@ -3,7 +3,7 @@
 using namespace ExcelFormula;
 using namespace ExcelFormula::Parser;
 
-std::pair<ParserError, IExcelFormulaParseTree> ExcelFormulaParser::BuildParseTreeFromTokens(const std::vector<ExcelFormula::IExcelFormulaToken>& /*inputLexedTokens*/) const noexcept
+std::pair<ParserError, IExcelFormulaParseTree> ExcelFormulaParser::BuildParseTreeFromTokens(const std::vector<std::unique_ptr<ExcelFormula::IExcelFormulaToken>>& /*inputLexedTokens*/) const noexcept
 {
     ParserError outputError = ParserError::Error;
     IExcelFormulaParseTree outputTree{};

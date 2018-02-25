@@ -12,7 +12,7 @@
 
 TEST_CASE( "Formula parsing should be successful", "[FormulaParsing]" ) {
     const std::unique_ptr<ExcelFormula::Parser::IExcelFormulaParser> excelFormulaParserInstance = ExcelFormula::Parser::CreateExcelFormulaParserInstance();
-    const auto [parseError, parsedFormulaTree] = excelFormulaParserInstance->BuildParseTreeFromTokens(std::vector<ExcelFormula::IExcelFormulaToken>{});
+    const auto [parseError, parsedFormulaTree] = excelFormulaParserInstance->BuildParseTreeFromTokens(std::vector<std::unique_ptr<ExcelFormula::IExcelFormulaToken>>{});
     REQUIRE(parseError == ExcelFormula::Parser::ParserError::None);
 }
 

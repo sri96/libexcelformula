@@ -12,7 +12,7 @@ namespace ExcelFormula
         class ExcelFormulaLexer : public IExcelFormulaLexer
         {
             public:
-                std::pair<LexerError, std::vector<IExcelFormulaToken>> LexFormulaIntoTokens(const std::wstring_view inputFormulaString) const noexcept;
+                std::pair<LexerError, std::vector<std::unique_ptr<IExcelFormulaToken>>> LexFormulaIntoTokens(const std::wstring_view inputFormulaString) const noexcept;
         };
     };
 };

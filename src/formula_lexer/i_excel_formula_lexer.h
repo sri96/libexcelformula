@@ -17,7 +17,7 @@ namespace ExcelFormula
         class IExcelFormulaLexer
         {
             public:
-                virtual std::pair<LexerError, std::vector<IExcelFormulaToken>> LexFormulaIntoTokens(const std::wstring_view inputFormulaString) const noexcept = 0;
+                virtual std::pair<LexerError, std::vector<std::unique_ptr<IExcelFormulaToken>>> LexFormulaIntoTokens(const std::wstring_view inputFormulaString) const noexcept = 0;
         };
 
         std::unique_ptr<IExcelFormulaLexer> CreateExcelFormulaLexerInstance();

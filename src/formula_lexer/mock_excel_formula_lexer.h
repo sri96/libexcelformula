@@ -12,10 +12,10 @@ namespace ExcelFormula
         class MockExcelFormulaLexer : public IExcelFormulaLexer
         {
             LexerError _outputLexerError;
-            std::vector<IExcelFormulaToken> _outputLexerTokens;
+            std::vector<std::unique_ptr<IExcelFormulaToken>> _outputLexerTokens;
             
             public:
-                std::pair<LexerError, std::vector<IExcelFormulaToken>> LexFormulaIntoTokens(const std::wstring_view inputFormulaString) const noexcept;
+                std::pair<LexerError, std::vector<std::unique_ptr<IExcelFormulaToken>>> LexFormulaIntoTokens(const std::wstring_view inputFormulaString) const noexcept;
                 void PopulateData();
         };
     };
