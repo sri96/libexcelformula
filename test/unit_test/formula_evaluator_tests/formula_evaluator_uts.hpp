@@ -9,7 +9,8 @@
 TEST_CASE( "Formula evaluations should be successful", "[FormulaEvaluation]" ) {
     std::unique_ptr<ExcelFormula::IExcelFormulaEvaluator> excelFormulaEvaluatorInstance = ExcelFormula::CreateExcelFormulaEvaluatorInstance();
     const std::wstring_view inputFormula(L"=SUM(5,6)");
-    const ExcelFormula::EvaluatedFormulaOutput output = excelFormulaEvaluatorInstance->EvaluateFormula(inputFormula);
+    auto callbackFunctionForReferenceValues = [=](const std::wstring_view /*inputReferenceName*/, std::wstring& /*valueForReference*/){};
+    const ExcelFormula::EvaluatedFormulaOutput output = excelFormulaEvaluatorInstance->EvaluateFormula(inputFormula, callbackFunctionForReferenceValues);
     REQUIRE(output.outputFormulaError == ExcelFormula::LibExcelFormulaError::LexerError);
     REQUIRE(output.outputFormulaError == ExcelFormula::LibExcelFormulaError::None);
 }

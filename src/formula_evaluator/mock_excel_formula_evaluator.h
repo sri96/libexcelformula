@@ -12,7 +12,7 @@ namespace ExcelFormula
         EvaluatedFormulaOutput _mockOutput;
 
         public:
-            EvaluatedFormulaOutput EvaluateFormula(const std::wstring_view inputFormulaString) const noexcept;
+            EvaluatedFormulaOutput EvaluateFormula(const std::wstring_view inputFormulaString, const std::function<void(const std::wstring_view, std::wstring&)>& inputCallbackFunction) const noexcept;
             void PopulateMockData();
     };
 }

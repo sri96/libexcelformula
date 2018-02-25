@@ -1,10 +1,11 @@
 #include "excel_formula_evaluator.h"
 #include "../formula_lexer/i_excel_formula_lexer.h"
+#include <functional>
 
 using namespace ExcelFormula;
 using namespace ExcelFormula::Lexer;
 
-EvaluatedFormulaOutput ExcelFormulaEvaluator::EvaluateFormula(std::wstring_view inputFormulaString) const noexcept
+EvaluatedFormulaOutput ExcelFormulaEvaluator::EvaluateFormula(std::wstring_view inputFormulaString, const std::function<void(const std::wstring_view, std::wstring&)>& /*inputCallbackFunction*/) const noexcept
 {
     EvaluatedFormulaOutput output;
     // Formula evaluation is four step process

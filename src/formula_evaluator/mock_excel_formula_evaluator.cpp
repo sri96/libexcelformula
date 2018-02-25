@@ -2,7 +2,7 @@
 
 using namespace ExcelFormula;
 
-EvaluatedFormulaOutput MockExcelFormulaEvaluator::EvaluateFormula(const std::wstring_view inputFormulaString) const noexcept
+EvaluatedFormulaOutput MockExcelFormulaEvaluator::EvaluateFormula(const std::wstring_view inputFormulaString, const std::function<void(const std::wstring_view, std::wstring&)>& /*inputCallbackFunction*/) const noexcept
 {
     return _mockOutput;
 }
