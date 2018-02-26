@@ -11,7 +11,6 @@ TEST_CASE( "Formula evaluations should be successful", "[FormulaEvaluation]" ) {
     const std::wstring_view inputFormula(L"=SUM(5,6)");
     auto callbackFunctionForReferenceValues = [=](const std::wstring_view /*inputReferenceName*/, std::wstring& /*outputValueForReference*/, ExcelFormula::LibExcelFormulaError& /*oututError*/){};
     const ExcelFormula::EvaluatedFormulaOutput output = excelFormulaEvaluatorInstance->EvaluateFormula(inputFormula, callbackFunctionForReferenceValues);
-    REQUIRE(output.outputFormulaError == ExcelFormula::LibExcelFormulaError::LexerError);
     REQUIRE(output.outputFormulaError == ExcelFormula::LibExcelFormulaError::None);
 }
 
