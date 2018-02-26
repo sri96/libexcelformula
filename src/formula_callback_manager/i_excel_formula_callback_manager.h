@@ -7,6 +7,7 @@
 #include <memory>
 #include <string>
 #include <string_view>
+#include <unordered_map>
 
 #include "../../include/libexcelformula/libexcelformulaerror.h"
 #include "../shared/excel_formula_parse_tree.h"
@@ -16,7 +17,7 @@ namespace ExcelFormula
     class IExcelFormulaCallbackManager
     {
         public:
-            virtual LibExcelFormulaError ResolveReferences(Parser::ExcelFormulaParseTree& inputFormulaParseTree, const std::function<void(const std::wstring_view, std::wstring&, LibExcelFormulaError&)>& inputCallbackFunction) const noexcept = 0;
+            virtual LibExcelFormulaError ResolveReferences(Parser::ExcelFormulaParseTree& inputFormulaParseTree, const std::function<void(const std::wstring_view, std::wstring&, LibExcelFormulaError&)>& inputCallbackFunction, std::unordered_map<std::wstring_view, std::wstring>& outputDataCache) const noexcept = 0;
     };
 
     std::unique_ptr<IExcelFormulaCallbackManager> CreateExcelFormulaCallbackManagerInstance();

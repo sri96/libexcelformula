@@ -10,7 +10,9 @@ namespace ExcelFormula
     class ExcelFormulaCallbackManager : public IExcelFormulaCallbackManager
     {
         public:
-            LibExcelFormulaError ResolveReferences(Parser::ExcelFormulaParseTree& inputFormulaParseTree, const std::function<void(const std::wstring_view, std::wstring&, LibExcelFormulaError&)>& inputCallbackFunction) const noexcept;
+            LibExcelFormulaError ResolveReferences(Parser::ExcelFormulaParseTree& inputFormulaParseTree, 
+            const std::function<void(const std::wstring_view, std::wstring&, LibExcelFormulaError&)>& inputCallbackFunction,
+            std::unordered_map<std::wstring_view, std::wstring>& outputReferenceCache) const noexcept;
     };
 };
 
