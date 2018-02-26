@@ -6,6 +6,9 @@ using namespace ExcelFormula::Parser;
 
 LibExcelFormulaError ExcelFormulaCallbackManager::ResolveReferences(ExcelFormulaParseTree& inputFormulaParseTree, const std::function<void(const std::wstring_view, std::wstring&, LibExcelFormulaError&)>& inputCallbackFunction, std::unordered_map<std::wstring_view, std::wstring>& outputReferenceCache) const noexcept
 {
+    // Go through the Parse tree and for all reference nodes make a callback to the callee to get the referential data. This referential data will stored in a 
+    // cache and exported back to the calling function.
+
     ExcelFormulaParseTreeNode& rootNode = inputFormulaParseTree.GetRootNode();
     std::queue<ExcelFormulaParseTreeNode> childNodesToTraverse{};
 
