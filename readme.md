@@ -1,6 +1,6 @@
 # LibExcelFormula
 
-LibExcelFormula is a cross platform library that parses and evaluates excel formulas. It is written in pure modern C++ and is designed to be a cross platform library that emphasizes **correctness** and **performance** without any **external dependencies**. You should be able to drop the library into your existing C++ projects and integrate it. 
+LibExcelFormula is a cross platform library that parses excel formulas. It is written in pure modern C++ and is designed to be a cross platform library that emphasizes **correctness** and **performance** without any **external dependencies**. You should be able to drop the library into your existing C++ projects and integrate it. 
 
 The library is an implementation of the research paper - [A Grammar for Spreadsheet Formulas Evaluated on Two Large Datasets](https://drive.google.com/file/d/0B79P2Uym3JjvMjlaWWtnTWRLQmc/view)
 
@@ -23,6 +23,8 @@ You can build this library using CMake
 * Go to CMake/ directory in the root of the folder
 * Generate the Makefile or Visual Studio soluion file
 * Build and install the static library
+
+I have added a lot of unit tests in the test/unit_test folder. Please read through them to understand the crux of the library.
 
 ## How do I hack on this library?
 
