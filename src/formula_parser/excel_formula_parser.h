@@ -20,12 +20,6 @@ namespace ExcelFormula
                 std::pair<ParserError, ExcelFormulaParseTree> BuildParseTreeFromTokens(const std::vector<std::unique_ptr<ExcelFormula::IExcelFormulaToken>>& inputLexedTokens) const noexcept;
         };
 
-        struct TokenInformationForParseTree
-        {
-            TokenType _tokenType;
-            std::wstring_view _tokenData;
-        };
-
         std::experimental::optional<ExcelFormulaParseTree> TryConvertingTokensToFormulaParseTree(const std::vector<TokenInformationForParseTree>& inputLexedTokens);
         std::experimental::optional<ExcelFormulaParseTree> TryConvertingTokensToFormulaWithEquivalentSignParseTree(const std::vector<TokenInformationForParseTree>& inputLexedTokens);
         std::experimental::optional<ExcelFormulaParseTree> TryConvertingTokensToArrayFormulaParseTree(const std::vector<TokenInformationForParseTree>& inputLexedTokens);
