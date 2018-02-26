@@ -9,6 +9,7 @@ namespace ExcelFormula
     {
         enum class RuntimeError
         {
+            NotImplemented,
             Error, // A generic error object. It will be replaced shortly
             None
         };
