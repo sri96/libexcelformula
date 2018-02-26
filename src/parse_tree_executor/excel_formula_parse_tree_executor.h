@@ -12,7 +12,7 @@ namespace ExcelFormula
         class ExcelFormulaParseTreeExecutor : public IExcelFormulaParseTreeExecutor
         {
             public:
-                std::pair<RuntimeError, std::wstring> ExecuteParseTree(ExcelFormula::Parser::IExcelFormulaParseTree& inputParseTreeToExecute) const noexcept;
+                std::pair<RuntimeError, std::wstring> ExecuteParseTree(ExcelFormula::Parser::ExcelFormulaParseTree& inputParseTreeToExecute) const noexcept;
         };
     };
 };

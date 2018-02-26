@@ -15,7 +15,7 @@ namespace ExcelFormula
             std::wstring _outputString;
 
             public:
-                std::pair<RuntimeError, std::wstring> ExecuteParseTree(ExcelFormula::Parser::IExcelFormulaParseTree& inputParseTreeToExecute) const noexcept;
+                std::pair<RuntimeError, std::wstring> ExecuteParseTree(ExcelFormula::Parser::ExcelFormulaParseTree& inputParseTreeToExecute) const noexcept;
                 void PopulateData();
         };
     };

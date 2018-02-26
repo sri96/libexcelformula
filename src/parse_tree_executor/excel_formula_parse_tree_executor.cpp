@@ -2,7 +2,7 @@
 
 using namespace ExcelFormula::Runtime;
 
-std::pair<RuntimeError, std::wstring> ExcelFormulaParseTreeExecutor::ExecuteParseTree(ExcelFormula::Parser::IExcelFormulaParseTree& /*inputParseTreeToExecute*/) const noexcept
+std::pair<RuntimeError, std::wstring> ExcelFormulaParseTreeExecutor::ExecuteParseTree(ExcelFormula::Parser::ExcelFormulaParseTree& /*inputParseTreeToExecute*/) const noexcept
 {
     return std::make_pair(RuntimeError::Error, L"");
 }

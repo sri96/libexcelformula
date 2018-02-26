@@ -6,7 +6,7 @@
 #include <vector>
 
 #include "../../../src/formula_parser/i_excel_formula_parser.h"
-#include "../../../src/shared/i_excel_formula_parse_tree.h"
+#include "../../../src/shared/excel_formula_parse_tree.h"
 #include "../../../src/shared/i_excel_formula_token.h"
 #include "../../../src/shared/parser_error.h"
 

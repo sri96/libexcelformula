@@ -3,7 +3,7 @@
 using namespace ExcelFormula;
 using namespace ExcelFormula::Parser;
 
-ExcelFormula::LibExcelFormulaError MockExcelFormulaCallbackManager::ResolveReferences(IExcelFormulaParseTree& /*inputFormulaParseTree*/, const std::function<void(const std::wstring_view, std::wstring&, LibExcelFormulaError&)>& /*inputCallbackFunction*/) const noexcept
+ExcelFormula::LibExcelFormulaError MockExcelFormulaCallbackManager::ResolveReferences(ExcelFormulaParseTree& /*inputFormulaParseTree*/, const std::function<void(const std::wstring_view, std::wstring&, LibExcelFormulaError&)>& /*inputCallbackFunction*/) const noexcept
 {
     return _outputError;
 }

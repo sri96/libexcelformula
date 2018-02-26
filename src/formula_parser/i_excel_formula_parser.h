@@ -6,7 +6,7 @@
 #include <memory>
 #include <utility>
 #include <vector>
-#include "../shared/i_excel_formula_parse_tree.h"
+#include "../shared/excel_formula_parse_tree.h"
 #include "../shared/i_excel_formula_token.h"
 #include "../shared/parser_error.h"
 
@@ -17,7 +17,7 @@ namespace ExcelFormula
         class IExcelFormulaParser
         {
             public:
-                virtual std::pair<ParserError, IExcelFormulaParseTree> BuildParseTreeFromTokens(const std::vector<std::unique_ptr<ExcelFormula::IExcelFormulaToken>>& inputLexedTokens) const noexcept = 0;
+                virtual std::pair<ParserError, ExcelFormulaParseTree> BuildParseTreeFromTokens(const std::vector<std::unique_ptr<ExcelFormula::IExcelFormulaToken>>& inputLexedTokens) const noexcept = 0;
         };
 
         std::unique_ptr<IExcelFormulaParser> CreateExcelFormulaParserInstance();

@@ -7,7 +7,7 @@
 #include <string>
 #include <utility>
 
-#include "../shared/i_excel_formula_parse_tree.h"
+#include "../shared/excel_formula_parse_tree.h"
 #include "../shared/runtime_error.h"
 
 namespace ExcelFormula
@@ -17,7 +17,7 @@ namespace ExcelFormula
         class IExcelFormulaParseTreeExecutor
         {
             public:
-                virtual std::pair<RuntimeError, std::wstring> ExecuteParseTree(ExcelFormula::Parser::IExcelFormulaParseTree& inputParseTreeToExecute) const noexcept = 0;
+                virtual std::pair<RuntimeError, std::wstring> ExecuteParseTree(ExcelFormula::Parser::ExcelFormulaParseTree& inputParseTreeToExecute) const noexcept = 0;
         };
 
         std::unique_ptr<IExcelFormulaParseTreeExecutor> CreateExcelFormulaParseTreeExecutorInstance();

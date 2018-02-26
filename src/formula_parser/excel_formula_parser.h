@@ -5,6 +5,10 @@
 
 #include "i_excel_formula_parser.h"
 #include "../shared/parser_error.h"
+#include "../shared/token_types.h"
+
+#include <string_view>
+#include <experimental/optional>
 
 namespace ExcelFormula
 {
@@ -13,8 +17,18 @@ namespace ExcelFormula
         class ExcelFormulaParser : public IExcelFormulaParser
         {
             public:
-                std::pair<ParserError, IExcelFormulaParseTree> BuildParseTreeFromTokens(const std::vector<std::unique_ptr<ExcelFormula::IExcelFormulaToken>>& inputLexedTokens) const noexcept;
+                std::pair<ParserError, ExcelFormulaParseTree> BuildParseTreeFromTokens(const std::vector<std::unique_ptr<ExcelFormula::IExcelFormulaToken>>& inputLexedTokens) const noexcept;
         };
+
+        struct TokenInformationForParseTree
+        {
+            TokenType _tokenType;
+            std::wstring_view _tokenData;
+        };
+
+        std::experimental::optional<ExcelFormulaParseTree> TryConvertingTokensToFormulaParseTree(const std::vector<TokenInformationForParseTree>& inputLexedTokens);
+        std::experimental::optional<ExcelFormulaParseTree> TryConvertingTokensToFormulaWithEquivalentSignParseTree(const std::vector<TokenInformationForParseTree>& inputLexedTokens);
+        std::experimental::optional<ExcelFormulaParseTree> TryConvertingTokensToArrayFormulaParseTree(const std::vector<TokenInformationForParseTree>& inputLexedTokens);
     };
 };
 
