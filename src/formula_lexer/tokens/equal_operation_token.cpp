@@ -84,6 +84,7 @@ void EqualOperationToken::SetTokenMatchStartingPosition(const size_t inputTokenM
     _startingPosOfMatchedStringView = inputTokenMatchStartingPosition;
 }
 
+// TODO: Can these functions be templatized somehow?
 std::unique_ptr<IExcelFormulaToken> ExcelFormula::Lexer::Tokens::CreateEqualOperationTokenInstance()
 {
     return std::make_unique<EqualOperationToken>();

@@ -10,7 +10,13 @@ add_library(excelformula
             ../src/formula_lexer/excel_formula_lexer.cpp
             ../src/formula_lexer/tokens/equal_operation_token.cpp
             ../src/formula_lexer/tokens/open_curly_paren_token.cpp
-            ../src/formula_lexer/tokens/close_curly_paren_token.cpp 
+            ../src/formula_lexer/tokens/close_curly_paren_token.cpp
+            ../src/formula_lexer/tokens/open_paren_token.cpp
+            ../src/formula_lexer/tokens/close_paren_token.cpp
+            ../src/formula_lexer/tokens/excel_function_token.cpp
+            ../src/formula_lexer/tokens/comma_token.cpp
+            ../src/formula_lexer/tokens/integer_token.cpp
+            ../src/formula_lexer/tokens/cell_token.cpp
             ../src/formula_parser/excel_formula_parser.cpp 
             ../src/formula_callback_manager/excel_formula_callback_manager.cpp 
             ../src/parse_tree_executor/excel_formula_parse_tree_executor.cpp)

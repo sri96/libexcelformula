@@ -10,6 +10,12 @@ namespace ExcelFormula
         EqualOperationToken,
         OpenCurlyParenToken,
         CloseCurlyParenToken,
+        OpenParenToken,
+        CloseParenToken,
+        CommaToken,
+        ExcelFunctionToken,
+        IntegerToken,
+        CellToken,
     };
 };
 
