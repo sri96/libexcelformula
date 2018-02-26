@@ -7,7 +7,6 @@
 #include "../../../src/shared/i_excel_formula_token.h"
 #include "../../../src/shared/lexer_error.h"
 #include "../../../src/shared/token_types.h"
-#include <iostream>
 
 TEST_CASE( "Lexing `=` should return a EqualOperationToken", "[FormulaLexing]" ) {
     std::unique_ptr<ExcelFormula::Lexer::IExcelFormulaLexer> excelFormulaLexerInstance = ExcelFormula::Lexer::CreateExcelFormulaLexerInstance();
