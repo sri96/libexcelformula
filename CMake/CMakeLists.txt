@@ -17,7 +17,9 @@ add_library(excelformula
             ../src/formula_lexer/tokens/comma_token.cpp
             ../src/formula_lexer/tokens/integer_token.cpp
             ../src/formula_lexer/tokens/cell_token.cpp
-            ../src/formula_parser/excel_formula_parser.cpp 
+            ../src/formula_parser/excel_formula_parser.cpp
+            ../src/shared/excel_formula_parse_tree_node.cpp
+            ../src/shared/excel_formula_parse_tree.cpp
             ../src/formula_callback_manager/excel_formula_callback_manager.cpp 
             ../src/parse_tree_executor/excel_formula_parse_tree_executor.cpp)
 
