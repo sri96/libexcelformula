@@ -51,7 +51,7 @@ bool CellToken::MatchToken(const std::wstring_view inputString) noexcept
         {
             if (matcher.position(index) == 0)
             {
-                _extractedTokenData = std::wstring_view(matcher[index].str());
+                _extractedTokenDataString = std::wstring(matcher[index].str());
                 return true;
             }
         }
@@ -70,9 +70,14 @@ std::wstring_view CellToken::GetTokenData() const noexcept
     return _extractedTokenData;
 }
 
+std::wstring CellToken::GetTokenDataString() const noexcept
+{
+    return _extractedTokenDataString;
+}
+
 size_t CellToken::GetTokenMatchStartingPosition() const noexcept
 {
-    if (!_extractedTokenData.empty())
+    if (!_extractedTokenDataString.empty())
     {
         return 0;
     }

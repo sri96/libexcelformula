@@ -55,7 +55,7 @@ std::pair<LexerError, std::vector<std::unique_ptr<IExcelFormulaToken>>> ExcelFor
             isMatchingTokenFound = _testingTokenInstances.at(index)->MatchToken(_substringToMatch);
             if (isMatchingTokenFound && _testingTokenInstances.at(index)->GetTokenMatchStartingPosition() == 0)
             {
-                const std::wstring_view matchedTokenStringViewRepresentation = _testingTokenInstances.at(index)->GetTokenData();
+                const std::wstring_view matchedTokenStringViewRepresentation = _testingTokenInstances.at(index)->GetTokenDataString();
                 matchIndex += matchedTokenStringViewRepresentation.size();
 
                 const TokenType matchedTokenType = _testingTokenInstances.at(index)->GetTokenType();

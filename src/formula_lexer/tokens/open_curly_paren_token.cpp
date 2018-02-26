@@ -43,7 +43,7 @@ bool OpenCurlyParenToken::MatchToken(const std::wstring_view inputString) noexce
 {
     if (inputString.substr(0, _stringViewRepresentation.size()) == _stringViewRepresentation)
     {
-        _extractedTokenData = _stringViewRepresentation;
+        _extractedTokenDataString = std::wstring(_stringViewRepresentation);
         return true;
     }
     else
@@ -62,9 +62,14 @@ std::wstring_view OpenCurlyParenToken::GetTokenData() const noexcept
     return _extractedTokenData;
 }
 
+std::wstring OpenCurlyParenToken::GetTokenDataString() const noexcept
+{
+    return _extractedTokenDataString;
+}
+
 size_t OpenCurlyParenToken::GetTokenMatchStartingPosition() const noexcept
 {
-    if (!_extractedTokenData.empty())
+    if (!_extractedTokenDataString.empty())
     {
         return 0;
     }

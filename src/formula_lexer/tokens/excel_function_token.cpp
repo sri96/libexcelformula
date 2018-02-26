@@ -57,7 +57,7 @@ bool ExcelFunctionToken::MatchToken(const std::wstring_view inputString) noexcep
     {
         if (inputString.substr(0, excelFunctionName.size()) == excelFunctionName)
         {
-            _extractedTokenData = excelFunctionName;
+            _extractedTokenDataString = std::wstring(excelFunctionName);
             return true;
         }
     }
@@ -75,9 +75,14 @@ std::wstring_view ExcelFunctionToken::GetTokenData() const noexcept
     return _extractedTokenData;
 }
 
+std::wstring ExcelFunctionToken::GetTokenDataString() const noexcept
+{
+    return _extractedTokenDataString;
+}
+
 size_t ExcelFunctionToken::GetTokenMatchStartingPosition() const noexcept
 {
-    if (!_extractedTokenData.empty())
+    if (!_extractedTokenDataString.empty())
     {
         return 0;
     }

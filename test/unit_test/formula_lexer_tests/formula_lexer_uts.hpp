@@ -13,7 +13,6 @@ TEST_CASE( "Lexing `=` should return a EqualOperationToken", "[FormulaLexing]" )
     const std::wstring_view inputFormula(L"=");
     const auto [lexerError, lexedTokens] = excelFormulaLexerInstance->LexFormulaIntoTokens(inputFormula);
 
-    // We shouldn't run into any lexing errors. We should have exactly one token. EqualOperationToken is what we are expecting.
     REQUIRE(lexerError == ExcelFormula::Lexer::LexerError::None);
     REQUIRE(lexedTokens.size() == 1);
     REQUIRE(lexedTokens.at(0)->GetTokenType() == ExcelFormula::TokenType::EqualOperationToken);
@@ -24,7 +23,6 @@ TEST_CASE( "Lexing `{` should return a OpenCurlyParenToken", "[FormulaLexing]" )
     const std::wstring inputFormula(L"{");
     const auto [lexerError, lexedTokens] = excelFormulaLexerInstance->LexFormulaIntoTokens(inputFormula);
 
-    // We shouldn't run into any lexing errors. We should have exactly one token. EqualOperationToken is what we are expecting.
     REQUIRE(lexerError == ExcelFormula::Lexer::LexerError::None);
     REQUIRE(lexedTokens.size() == 1);
     REQUIRE(lexedTokens.at(0)->GetTokenType() == ExcelFormula::TokenType::OpenCurlyParenToken);
@@ -35,7 +33,6 @@ TEST_CASE( "Lexing `{=` should return a OpenCurlyParenToken and EqualOperationTo
     const std::wstring_view inputFormula(L"{=");
     const auto [lexerError, lexedTokens] = excelFormulaLexerInstance->LexFormulaIntoTokens(inputFormula);
 
-    // We shouldn't run into any lexing errors. We should have exactly one token. EqualOperationToken is what we are expecting.
     REQUIRE(lexerError == ExcelFormula::Lexer::LexerError::None);
     REQUIRE(lexedTokens.size() == 2);
     REQUIRE(lexedTokens.at(0)->GetTokenType() == ExcelFormula::TokenType::OpenCurlyParenToken);
@@ -47,7 +44,6 @@ TEST_CASE( "Lexing `={` should return a EqualOperationToken and OpenCurlyParenTo
     const std::wstring_view inputFormula(L"={");
     const auto [lexerError, lexedTokens] = excelFormulaLexerInstance->LexFormulaIntoTokens(inputFormula);
 
-    // We shouldn't run into any lexing errors. We should have exactly one token. EqualOperationToken is what we are expecting.
     REQUIRE(lexerError == ExcelFormula::Lexer::LexerError::None);
     REQUIRE(lexedTokens.size() == 2);
     REQUIRE(lexedTokens.at(0)->GetTokenType() == ExcelFormula::TokenType::EqualOperationToken);
@@ -59,7 +55,6 @@ TEST_CASE( "Lexing `===` should return two EqualOperationToken", "[FormulaLexing
     const std::wstring_view inputFormula(L"===");
     const auto [lexerError, lexedTokens] = excelFormulaLexerInstance->LexFormulaIntoTokens(inputFormula);
 
-    // We shouldn't run into any lexing errors. We should have exactly one token. EqualOperationToken is what we are expecting.
     REQUIRE(lexerError == ExcelFormula::Lexer::LexerError::None);
     REQUIRE(lexedTokens.size() == 3);
     REQUIRE(lexedTokens.at(0)->GetTokenType() == ExcelFormula::TokenType::EqualOperationToken);
@@ -71,7 +66,6 @@ TEST_CASE( "Lexing `}={` should return one CloseCurlyParenToken, EqualOperationT
     const std::wstring_view inputFormula(L"}={");
     const auto [lexerError, lexedTokens] = excelFormulaLexerInstance->LexFormulaIntoTokens(inputFormula);
 
-    // We shouldn't run into any lexing errors. We should have exactly one token. EqualOperationToken is what we are expecting.
     REQUIRE(lexerError == ExcelFormula::Lexer::LexerError::None);
     REQUIRE(lexedTokens.size() == 3);
     REQUIRE(lexedTokens.at(0)->GetTokenType() == ExcelFormula::TokenType::CloseCurlyParenToken);
@@ -84,7 +78,6 @@ TEST_CASE( "Lexing `}=(` should return one CloseCurlyParenToken, EqualOperationT
     const std::wstring_view inputFormula(L"}=(");
     const auto [lexerError, lexedTokens] = excelFormulaLexerInstance->LexFormulaIntoTokens(inputFormula);
 
-    // We shouldn't run into any lexing errors. We should have exactly one token. EqualOperationToken is what we are expecting.
     REQUIRE(lexerError == ExcelFormula::Lexer::LexerError::None);
     REQUIRE(lexedTokens.size() == 3);
     REQUIRE(lexedTokens.at(0)->GetTokenType() == ExcelFormula::TokenType::CloseCurlyParenToken);
@@ -97,7 +90,6 @@ TEST_CASE( "Lexing `{=()}` should return OpenCurlyParenToken, EqualOperationToke
     const std::wstring_view inputFormula(L"{=()}");
     const auto [lexerError, lexedTokens] = excelFormulaLexerInstance->LexFormulaIntoTokens(inputFormula);
 
-    // We shouldn't run into any lexing errors. We should have exactly one token. EqualOperationToken is what we are expecting.
     REQUIRE(lexerError == ExcelFormula::Lexer::LexerError::None);
     REQUIRE(lexedTokens.size() == 5);
     REQUIRE(lexedTokens.at(0)->GetTokenType() == ExcelFormula::TokenType::OpenCurlyParenToken);
@@ -112,7 +104,6 @@ TEST_CASE( "Lexing `{=SUM()}` should return OpenCurlyParenToken, EqualOperationT
     const std::wstring_view inputFormula(L"{=SUM()}");
     const auto [lexerError, lexedTokens] = excelFormulaLexerInstance->LexFormulaIntoTokens(inputFormula);
 
-    // We shouldn't run into any lexing errors. We should have exactly one token. EqualOperationToken is what we are expecting.
     REQUIRE(lexerError == ExcelFormula::Lexer::LexerError::None);
     REQUIRE(lexedTokens.size() == 5);
     REQUIRE(lexedTokens.at(0)->GetTokenType() == ExcelFormula::TokenType::OpenCurlyParenToken);
@@ -127,7 +118,6 @@ TEST_CASE( "Lexing `{=SUM(,)}` should return OpenCurlyParenToken, EqualOperation
     const std::wstring_view inputFormula(L"{=SUM(,)}");
     const auto [lexerError, lexedTokens] = excelFormulaLexerInstance->LexFormulaIntoTokens(inputFormula);
 
-    // We shouldn't run into any lexing errors. We should have exactly one token. EqualOperationToken is what we are expecting.
     REQUIRE(lexerError == ExcelFormula::Lexer::LexerError::None);
     REQUIRE(lexedTokens.size() == 6);
     REQUIRE(lexedTokens.at(0)->GetTokenType() == ExcelFormula::TokenType::OpenCurlyParenToken);
@@ -143,7 +133,6 @@ TEST_CASE( "Lexing `1500{` should return a IntegerToken and OpenCurlyParenToken"
     const std::wstring_view inputFormula(L"1500{");
     const auto [lexerError, lexedTokens] = excelFormulaLexerInstance->LexFormulaIntoTokens(inputFormula);
 
-    // We shouldn't run into any lexing errors. We should have exactly one token. EqualOperationToken is what we are expecting.
     REQUIRE(lexerError == ExcelFormula::Lexer::LexerError::None);
     REQUIRE(lexedTokens.size() == 2);
     REQUIRE(lexedTokens.at(0)->GetTokenType() == ExcelFormula::TokenType::IntegerToken);
@@ -155,7 +144,6 @@ TEST_CASE( "Lexing `{=SUM(1500,1600)}` should be eight tokens", "[FormulaLexing]
     const std::wstring_view inputFormula(L"{=SUM(1500,1600)}");
     const auto [lexerError, lexedTokens] = excelFormulaLexerInstance->LexFormulaIntoTokens(inputFormula);
 
-    // We shouldn't run into any lexing errors. We should have exactly one token. EqualOperationToken is what we are expecting.
     REQUIRE(lexerError == ExcelFormula::Lexer::LexerError::None);
     REQUIRE(lexedTokens.size() == 8);
     REQUIRE(lexedTokens.at(0)->GetTokenType() == ExcelFormula::TokenType::OpenCurlyParenToken);
@@ -173,7 +161,6 @@ TEST_CASE( "Lexing `{=SUM(1500,A4)}` should be eight tokens", "[FormulaLexing]" 
     const std::wstring_view inputFormula(L"{=SUM(1500,A4)}");
     const auto [lexerError, lexedTokens] = excelFormulaLexerInstance->LexFormulaIntoTokens(inputFormula);
 
-    // We shouldn't run into any lexing errors. We should have exactly one token. EqualOperationToken is what we are expecting.
     REQUIRE(lexerError == ExcelFormula::Lexer::LexerError::None);
     REQUIRE(lexedTokens.size() == 8);
     REQUIRE(lexedTokens.at(0)->GetTokenType() == ExcelFormula::TokenType::OpenCurlyParenToken);
