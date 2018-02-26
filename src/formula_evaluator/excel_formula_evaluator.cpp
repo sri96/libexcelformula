@@ -1,4 +1,5 @@
 #include <functional>
+#include <unordered_map>
 
 #include "excel_formula_evaluator.h"
 #include "../formula_lexer/i_excel_formula_lexer.h"
@@ -38,7 +39,8 @@ EvaluatedFormulaOutput ExcelFormulaEvaluator::EvaluateFormula(std::wstring_view 
     //    that we don't have data for. Since we have the parse tree, let's analyze and perform callbacks to retrieve the data that we  
     //    don't have yet.
     const std::unique_ptr<IExcelFormulaCallbackManager> excelFormulaCallbackManagerInstance = CreateExcelFormulaCallbackManagerInstance();
-    const LibExcelFormulaError outputDataReferenceError = excelFormulaCallbackManagerInstance->ResolveReferences(parsedFormulaTree, inputCallbackFunction);
+    std::unordered_map<std::wstring_view, std::wstring> _referenceCache;
+    const LibExcelFormulaError outputDataReferenceError = excelFormulaCallbackManagerInstance->ResolveReferences(parsedFormulaTree, inputCallbackFunction, _referenceCache);
     if (outputDataReferenceError != LibExcelFormulaError::None)
     {
         output.outputFormulaError = outputDataReferenceError;
@@ -48,7 +50,8 @@ EvaluatedFormulaOutput ExcelFormulaEvaluator::EvaluateFormula(std::wstring_view 
     // 4. Evaluate the formula
     const std::unique_ptr<IExcelFormulaParseTreeExecutor> excelFormulaParseTreeExecutorInstance = CreateExcelFormulaParseTreeExecutorInstance();
     const auto [runtimeError, outputEvaluatedResult] = excelFormulaParseTreeExecutorInstance->ExecuteParseTree(parsedFormulaTree);
-    if (runtimeError != RuntimeError::None)
+    // Some formulas are not implemented. In that case RuntimeError:NotImplemented message will be raised
+    if (runtimeError != RuntimeError::NotImplemented)
     {
         output.outputFormulaError = LibExcelFormulaError::RuntimeError;
         return output;
